@@ -1,6 +1,7 @@
 import React from 'react';
 import './style.css';
 import { connect } from 'react-redux';
+import timeAction from '../../actionCreators/time';
 
 class ExampleComponent extends React.Component {
   render() {
@@ -20,10 +21,11 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  setCurrentTime: (viewport) => dispatch({
-    type: 'SET_CURRENT_TIME',
-    payload: new Date().getHours() + ":" + new Date().getMinutes() + ":" + new Date().getSeconds(),
-  })
+  setCurrentTime: () => dispatch(
+    timeAction.currentTime(
+      new Date().getHours() + ":" + new Date().getMinutes() + ":" + new Date().getSeconds()
+    )
+  ),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ExampleComponent);
